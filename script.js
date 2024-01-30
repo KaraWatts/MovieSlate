@@ -14,12 +14,6 @@ function addMovie() {
     dragHamburger.setAttribute('class', 'draggableMarker')
     listItem.appendChild(dragHamburger)
     
-    // Add dragging class to listed movie on dragstart event
-    listItem.addEventListener('dragstart', () => {
-        listItem.classList.add("dragging");
-    });
-    // Remove dragging class from item on dragend event
-    listItem.addEventListener("dragend", () => listItem.classList.remove("dragging"));
     
     //add new list item to Movie List
     movieList.appendChild(listItem);
@@ -27,8 +21,16 @@ function addMovie() {
     
 }
 
-showRankings();
 
+
+
+document.querySelector('#movieRanking').addEventListener('dragstart')
+// Add dragging class to listed movie on dragstart event
+listItem.addEventListener('dragstart', () => {
+    listItem.classList.add("dragging");
+});
+// Remove dragging class from item on dragend event
+listItem.addEventListener("dragend", () => listItem.classList.remove("dragging"));
 
 
 function draggableMovieList(e) {
