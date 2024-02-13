@@ -3,6 +3,12 @@ const movieList = document.querySelector('#movieRanking');
 
 
 //Add an item to the movie list
+
+
+/**
+ * Description placeholder
+ * @date 1/31/2024 - 11:03:04 AM
+ */
 function addMovie() {
     //create list item for new movies
     let listItem = document.createElement('li');
@@ -33,6 +39,7 @@ listItem.addEventListener('dragstart', () => {
 listItem.addEventListener("dragend", () => listItem.classList.remove("dragging"));
 
 
+
 function draggableMovieList(e) {
     e.preventDefault();
     const draggingItem = document.querySelector(".dragging");
@@ -57,7 +64,13 @@ function saveData() {
     localStorage.setItem("data", movieList.innerHTML);
 }
 
-//show saved movie rankings on window load
+
+
+
+/**
+ * Description
+ * @returns {any}
+ */
 function showRankings() {
     movieList.innerHTML = localStorage.getItem('data');
 }
