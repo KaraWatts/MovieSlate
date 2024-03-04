@@ -38,9 +38,6 @@ document.addEventListener('mouseup', (e) => {
 
 
 
-
-
-
 //Save the movie list to the local storage
 function saveData() {
     localStorage.setItem("data", movieList.innerHTML);
