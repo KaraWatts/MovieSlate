@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+// import Button from 'react-bootstrap/Button';
+import movieSearch from "./Components/TMDB";
+import movieCard from "./Components/movieCards";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userInput, setUserInput] = useState("");
+  const [movieInfo, setMovieInfo] = useState([]); //TODO put into a useeffect function to keep from running on
+  const [cards, setCards] = useState();
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    console.log(userInput);
+
+    let response = await movieSearch(userInput);
+    console.log(response);
+    setMovieInfo(response);
+  }
+  useEffect(() => {
+    setCards(
+      movieInfo.map((film) =>
+        movieCard(
+          film.title,
+          film.overview,
+          film.poster_path,
+          film.release_date,
+          film.vote_average
+        )
+      )
+    );
+  }, [movieInfo]);
+  console.log(movieInfo);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Form onSubmit={handleFormSubmit}>
+        <Form.Group className="mb-3" controlId="movieSearchBar">
+          <Form.Label className="tw-text-blue-500">
+            Search Movie by Title
+          </Form.Label>
+          <Form.Control
+            type="Normal text"
+            placeholder="Movie Title"
+            value={userInput}
+            onChange={(event) => setUserInput(event.target.value)}
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Search
+        </Button>
+      </Form>
+      <Container fluid>
+        <Row xl={4} lg={3} md={2} sm={2} xs={1} className="g-4">
+          {cards}
+        </Row>
+      </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
