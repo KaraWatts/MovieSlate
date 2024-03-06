@@ -7,7 +7,7 @@ import movieCard from "./Components/movieCards";
 
 function App() {
   const [userInput, setUserInput] = useState("");
-  const [movieInfo, setMovieInfo] = useState([]); //TODO put into a useeffect function to keep from running on
+  const [movieInfo, setMovieInfo] = useState([]); 
   const [cards, setCards] = useState();
 
   async function handleFormSubmit(event) {
