@@ -1,0 +1,14 @@
+.nav-link.active {
+    color:  #2E294E !important;
+    background-color: #E5E5E5 !important;
+  }
+  
+  .nav-link {
+    color: #E5E5E5 !important;
+    background-color: #2E294E !important;
+  }
+  
+  .tablink {
+    text-decoration: none;
+    color: inherit
+  }
