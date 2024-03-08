@@ -1,15 +1,25 @@
 import { Card } from "react-bootstrap/";
 import default_poster from "../assets/default_poster.jpeg";
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 
-function MovieCard({ key, release, poster, title, rating }) {
-  const year = release.slice(0, 4);
-  const posterImg = poster
-    ? `http://image.tmdb.org/t/p/w185${poster}`
-    : default_poster;
+function MovieCard({ id, release, poster, title, rating, description }) {
+  const { favorites, setFavorites } = useOutletContext();
 
   const navigate = useNavigate();
   const onClick = () => {
+    setFavorites([
+      ...favorites,
+      {
+        key: id,
+        id: id,
+        title: title,
+        description: description,
+        poster: poster,
+        release: release,
+        rating: rating,
+      },
+    ]);
     navigate(`watchlist/`);
   };
 
@@ -28,7 +38,7 @@ function MovieCard({ key, release, poster, title, rating }) {
         className="bg-black"
         style={{ paddingTop: "1px", paddingLeft: "17px", paddingRight: "17px" }}
         variant="top"
-        src={posterImg}
+        src={poster}
       />
       <Card.Body>
         <Card.Title className="fs-5">{title}</Card.Title>
@@ -36,7 +46,7 @@ function MovieCard({ key, release, poster, title, rating }) {
           Rating: {parseInt(rating)}/10
         </Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted">
-          Released: {year}
+          Released: {release}
         </Card.Subtitle>
         {/* <Card.Text className="text-start" style={{ height: "5rem" }}>
           {description}
