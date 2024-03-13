@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Search from "./pages/SearchPage";
-import WatchList from "./pages/WatchList";
+import Rankings from "./pages/Rankings";
 import ErrorPage from "./pages/ErrorPage";
+import WatchList from "./pages/WatchList";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "watchlist/",
         element: <WatchList />,
+      },
+      {
+        path: "rankings/",
+        element: <Rankings />,
       },
     ],
     errorElement: <ErrorPage />,

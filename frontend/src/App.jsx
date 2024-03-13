@@ -4,11 +4,11 @@ import "./App.css";
 import NavTabs from "./Components/Tabs";
 
 function App() {
-  const [favorites, setFavorites] = useState([]);
+  const [rankings, setRankings] = useState([]);
   return (
     <div>
       <NavTabs />
-      <Outlet context={{ favorites, setFavorites }} />
+      <Outlet context={{ rankings, setRankings }} />
     </div>
   );
 }

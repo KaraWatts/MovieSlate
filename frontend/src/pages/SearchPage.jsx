@@ -23,7 +23,7 @@ function Search() {
       movieInfo.map((film) => {
         const year = film.release_date.slice(0, 4);
         const posterImg = film.poster_path
-          ? `http://image.tmdb.org/t/p/w185${film.poster_path}`
+          ? `http://image.tmdb.org/t/p/w500${film.poster_path}`
           : default_poster;
         return (
           <MovieCard
@@ -34,6 +34,7 @@ function Search() {
             poster={posterImg}
             release={year}
             rating={film.vote_average}
+            banner={film.backdrop_path}
           />
         );
       })
@@ -61,7 +62,12 @@ function Search() {
         </Button>
       </Form>
       <Container fluid>
-        <Row className="justify-content-md-center">{cards}</Row>
+        <Row
+          className="justify-content-md-center"
+          style={{ boxSizing: "border-box" }}
+        >
+          {cards}
+        </Row>
       </Container>
     </>
   );
