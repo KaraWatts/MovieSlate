@@ -1,27 +1,34 @@
 import React from "react";
-import { ListGroup, Card, Container, Row } from "react-bootstrap";
+import { Table, Image } from "react-bootstrap";
 import { useOutletContext } from "react-router-dom";
-import MovieCard from "../Components/movieCards";
+import Draggable from 'react-draggable';
 
 function Rankings() {
   const { rankings, setRankings } = useOutletContext();
 
-  const favMovies = rankings.map((film) => (
-    <MovieCard
-      key={film.key}
-      id={film.id}
-      title={film.title}
-      description={film.description}
-      poster={film.poster}
-      release={film.release}
-      rating={film.rating}
-    />
-  ));
 
   return (
-    <Container fluid>
-      <Row className="justify-content-md-center">{favMovies}</Row>
-    </Container>
+    <div className="allRanks">
+              {rankings.map((film, index) => (
+            <Draggable key={film.key}>
+            <div  className="tile">
+            <h4>{index+1}</h4>
+                <Image style={{ height: "100px" }} src={film.poster} fluid />
+              <h3>{film.title}</h3>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setRankings(
+                      rankings.filter((movie) => movie.id !== film.id)
+                    )
+                  }
+                >
+                  X
+                </button>
+            </div>
+          </Draggable>
+          ))}
+      </div>
   );
 }
 

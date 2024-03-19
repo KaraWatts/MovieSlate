@@ -13,7 +13,6 @@ function movieSearch(input) {
       page: "1",
     },
     headers: {
-      accept: "application/json",
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMGUwNmFmNGQzYjY5MjZiNzI2ZmNiYTY3MTdlMDlkZCIsInN1YiI6IjY1ZTYyMDM1ZmUwNzdhMDE4NTEzZjZlOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SHajmf1jQr-YvDmbpCuevylIAPZpok5pWzLUXt394Rk",
     },

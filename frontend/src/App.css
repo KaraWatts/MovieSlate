@@ -63,3 +63,18 @@ vertical-align: middle;
   padding-left: 4%;
   padding-right: 4%;
 }
+
+.allRanks {
+  display: flex;
+  flex-direction: column;
+  width:40%;
+}
+
+.tile {
+  display: flex;
+  flex-direction: row;
+  border:3px solid #2E294E;
+  border-radius: 3%;
+  justify-content: space-evenly;
+}
+

@@ -1,7 +1,6 @@
-import React from "react";
-import { Container, Row, Table, Image, Carousel } from "react-bootstrap";
+import { Table, Image, Carousel } from "react-bootstrap";
 import { useOutletContext } from "react-router-dom";
-import MovieCard from "../Components/movieCards";
+
 
 export default function WatchList() {
   const { rankings, setRankings } = useOutletContext();
@@ -13,12 +12,6 @@ export default function WatchList() {
           <Carousel.Item key={film.id} interval={10000}>
             <div
               className="towatch"
-              //   style={{
-              //     backgroundImage: `url(
-              //       https://image.tmdb.org/t/p/original/${film.banner}
-              //     )`,
-              //     backgroundSize: "cover",
-              //   }}
             >
               <div className="overview">
                 <h3>Movie Overview</h3>
