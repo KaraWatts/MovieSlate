@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <NavTabs />
-      <Outlet context={{ rankings, setRankings }} />
+      <Outlet context={{rankings, setRankings}} />
     </div>
   );
 }
