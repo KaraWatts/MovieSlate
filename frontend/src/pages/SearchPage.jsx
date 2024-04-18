@@ -1,40 +1,50 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-// import Button from 'react-bootstrap/Button';
-import movieSearch from "./Components/TMDB";
-import movieCard from "./Components/movieCards";
+import movieSearch from "../Components/TMDB";
+import MovieCard from "../Components/movieCards";
+import ComingSoon from "../Components/ComingSoon";
+import default_poster from "../assets/default_poster.jpeg";
 
-function App() {
+function Search() {
+  const [movieInfo, setMovieInfo] = useState([]);
   const [userInput, setUserInput] = useState("");
-  const [movieInfo, setMovieInfo] = useState([]); 
   const [cards, setCards] = useState();
 
   async function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(userInput);
 
     let response = await movieSearch(userInput);
-    console.log(response);
     setMovieInfo(response);
+    console.log(response);
   }
+
   useEffect(() => {
     setCards(
-      movieInfo.map((film) =>
-        movieCard(
-          film.title,
-          film.overview,
-          film.poster_path,
-          film.release_date,
-          film.vote_average
-        )
-      )
+      movieInfo.map((film) => {
+        const year = film.release_date.slice(0, 4);
+        const posterImg = film.poster_path
+          ? `http://image.tmdb.org/t/p/w500${film.poster_path}`
+          : default_poster;
+        return (
+          <MovieCard
+            key={film.id}
+            id={film.id}
+            title={film.title}
+            description={film.overview}
+            poster={posterImg}
+            release={year}
+            rating={film.vote_average}
+            banner={film.backdrop_path}
+          />
+        );
+      })
     );
   }, [movieInfo]);
-  console.log(movieInfo);
 
   return (
     <>
+      <ComingSoon />
+      <br />
       <Form onSubmit={handleFormSubmit}>
         <Form.Group className="mb-3" controlId="movieSearchBar">
           <Form.Label className="tw-text-blue-500">
@@ -52,7 +62,10 @@ function App() {
         </Button>
       </Form>
       <Container fluid>
-        <Row xl={4} lg={3} md={2} sm={2} xs={1} className="g-4">
+        <Row
+          className="justify-content-md-center"
+          style={{ boxSizing: "border-box" }}
+        >
           {cards}
         </Row>
       </Container>
@@ -60,4 +73,4 @@ function App() {
   );
 }
 
-export default App;
+export default Search;

@@ -26,3 +26,4 @@ dist-ssr
 
 #APIs
 movieSlate/src/Components/TMDB.jsx
+movieSlate/src/Components/nowplayingAPI.jsx
